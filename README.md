@@ -1,2 +1,3 @@
-# fyers-based-f-o-scanner-dashboard-with-bull-bear-qualification-and-oi-analytics
-Exported from Caffeine project: Fyers-based F&amp;O scanner dashboard with bull/bear qualification and OI analytics
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

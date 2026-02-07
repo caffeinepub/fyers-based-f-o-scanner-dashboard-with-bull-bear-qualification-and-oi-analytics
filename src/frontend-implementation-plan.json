@@ -1,0 +1,40 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Dashboard Index Performance snapshot",
+  "requirements": [
+    {
+      "id": "REQ-11",
+      "summary": "Add an \"Index Performance\" snapshot to the Dashboard showing % change for a fixed set of indices, sorted descending by % change.",
+      "acceptanceCriteria": [
+        "Dashboard includes an \"Index Performance\" section visible above or alongside the existing Bull/Bear scan results.",
+        "The section displays one row per index from the provided list.",
+        "Each row includes the index name and its current % change value.",
+        "Rows are sorted by % change in descending order (highest % change at the top).",
+        "All user-facing labels in this section are in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Extend the frontend backendInterface type definitions with the new backend capability used to fetch the Dashboard index performance payload (name + numeric % change + explicit missing value), so the frontend can compile cleanly once the backend implements it."
+        },
+        {
+          "path": "frontend/src/hooks/useIndexPerformance.ts",
+          "operation": "create",
+          "description": "Add a React Query hook that fetches the index performance payload from the actor (enabled only when the actor is ready) and returns loading/error/data states suitable for rendering and client-side sorting."
+        },
+        {
+          "path": "frontend/src/components/dashboard/IndexPerformanceSnapshot.tsx",
+          "operation": "create",
+          "description": "Create an Index Performance snapshot component that renders one row per required index, formats % change (and an English \"Unavailable\" state when missing), and sorts rows by % change descending before display. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Wire the new IndexPerformanceSnapshot into the Dashboard UI above or alongside the existing Bull/Bear scan results (without changing existing scan logic/results tables), ensuring all labels are English and the section is visible in the main dashboard layout. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

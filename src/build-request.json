@@ -1,0 +1,68 @@
+{
+  "kind": "build_request",
+  "title": "Add index performance snapshot list to Dashboard",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-11",
+      "text": "Add a dashboard \"Index Performance\" snapshot that shows % change for the following indices and sorts them in descending order by % change: Nifty50, Bank Nifty, Nifty Mid Select, Sensex, Finnifty, Nifty Pvt Bank, Nifty PSU Bank, Nifty IT, Nifty Pharma, Nifty FMCG, Nifty Auto, Nifty Metal, Nifty Energy, Nifty Realty.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-9"
+        ],
+        "quotes": [
+          "following are the index whose performance i want to see in dashboard: nifty50, bank nifty, nifty mid select, sensex, finnifty, nifty pvt bank, nifty psu bank, nifty it, nifty pharma, nifty fmcg, nifty auto, nifty metal, nifty energy, nifty realty."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dashboard includes an \"Index Performance\" section visible above or alongside the existing Bull/Bear scan results.",
+        "The section displays one row per index from the provided list.",
+        "Each row includes the index name and its current % change value.",
+        "Rows are sorted by % change in descending order (highest % change at the top).",
+        "All user-facing labels in this section are in English."
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "text": "Implement backend support to provide index performance (% change) data for the Dashboard index list, returning a single payload that the frontend can render and sort.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-9"
+        ],
+        "quotes": [
+          "following are the index whose performance i want to see in dashboard: nifty50, bank nifty, nifty mid select, sensex, finnifty, nifty pvt bank, nifty psu bank, nifty it, nifty pharma, nifty fmcg, nifty auto, nifty metal, nifty energy, nifty realty."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes a new query method that returns index performance entries for the specified index names.",
+        "Each returned entry contains: index name and numeric % change.",
+        "If index performance data cannot be fetched for an index, the entry is still returned with an explicit missing/empty value that the UI can display as unavailable (without crashing).",
+        "Method is access-controlled consistently with existing user-only queries (same authorization pattern as getResults/getStatus)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in backend/main.mo (no additional backend services).",
+    "Do not edit files under frontend/src/components/ui or any path listed as immutable in SYSTEM_CONTEXT."
+  ],
+  "nonGoals": [
+    "Do not implement Top Gainers / Top Losers in this change (even though it was discussed earlier).",
+    "Do not change the existing bull/bear scan logic or results tables as part of this index snapshot change."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

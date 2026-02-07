@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Android app that fetches F&O stock/option data from Fyers for symbols in symbols.txt, applies bull/bear qualification rules based on the first 5-minute candle vs day high/low (with intraday invalidation if broken), and displays qualifying stocks with ATM and 2-ITM option OI change and OI % change (seller POV) on a dashboard. Dashboard should also show a descending-sorted index performance (%) snapshot for a specified list of indices and display top gainers/losers computed from day open price.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-add-a-settings-flow-to-configure-fyers-api-access-for-each-signed-in-user-including-fields-to-enter-store-required-fyers-credentials-e-g-client-app-id-secret-if-applicable-redirect-url-and-any-required-auth-codes-tokens-and-provide-ui-controls-to-connect-show-connection-status-and-disconnect",
+      "title": "Add a settings flow to configure Fyers API access for each signed-in user, including fields to enter/store required Fyers credentials (e.g., client/app id, secret if applicable, redirect URL, and any required auth codes/tokens), and provide UI controls to connect, show connection status, and disconnect.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-bull-qualification-rule-a-symbol-qualifies-as-bull-only-if-the-first-5-minute-candle-low-equals-the-day-low-at-that-time-and-if-that-low-is-broken-at-any-later-point-in-the-same-day-the-symbol-is-marked-ignored-for-the-day-disqualified-and-excluded-from-qualifying-results",
+      "title": "Implement the bull qualification rule: a symbol qualifies as Bull only if the first 5-minute candle low equals the day low at that time, and if that low is broken at any later point in the same day the symbol is marked 'ignored for the day' (disqualified) and excluded from qualifying results.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-bear-qualification-rule-a-symbol-qualifies-as-bear-only-if-the-first-5-minute-candle-high-equals-the-day-high-at-that-time-and-if-that-high-is-broken-at-any-later-point-in-the-same-day-the-symbol-is-marked-ignored-for-the-day-disqualified-and-excluded-from-qualifying-results",
+      "title": "Implement the bear qualification rule: a symbol qualifies as Bear only if the first 5-minute candle high equals the day high at that time, and if that high is broken at any later point in the same day the symbol is marked 'ignored for the day' (disqualified) and excluded from qualifying results.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-support-loading-the-f-o-universe-from-a-symbols-txt-style-list-provide-a-ui-to-upload-paste-a-newline-delimited-symbol-list-store-it-per-user-and-use-it-as-the-scan-universe-for-the-dashboard",
+      "title": "Support loading the F&O universe from a symbols.txt-style list: provide a UI to upload/paste a newline-delimited symbol list, store it per user, and use it as the scan universe for the dashboard.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-for-all-symbols-that-pass-bull-bear-criteria-and-are-not-ignored-fetch-the-option-chain-derivatives-data-needed-to-compute-atm-and-2-itm-strike-metrics-and-compute-for-each-strike-oi-change-and-oi-change-from-a-seller-point-of-view-call-side-for-bear-put-side-for-bull-or-explicitly-label-the-side-used",
+      "title": "For all symbols that pass Bull/Bear criteria (and are not ignored), fetch the option-chain/derivatives data needed to compute ATM and 2-ITM strike metrics, and compute for each strike: OI change and OI % change from a seller point of view (call side for Bear, put side for Bull, or explicitly label the side used).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-dashboard-screen-that-runs-the-scan-and-displays-results-in-separate-bull-and-bear-sections-with-sortable-tabular-rows-per-symbol-including-qualification-status-first-5-min-levels-day-high-low-context-and-the-atm-2-itm-oi-metrics",
+      "title": "Create a dashboard screen that runs the scan and displays results in separate Bull and Bear sections with sortable/tabular rows per symbol, including qualification status, first 5-min levels, day high/low context, and the ATM + 2-ITM OI metrics.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-coherent-visual-theme-colors-typography-spacing-and-component-styling-that-is-applied-consistently-across-settings-and-dashboard-with-a-distinct-finance-trading-aesthetic-avoid-blue-purple-as-primary-colors",
+      "title": "Add a coherent visual theme (colors, typography, spacing, and component styling) that is applied consistently across Settings and Dashboard, with a distinct finance/trading aesthetic (avoid blue/purple as primary colors).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-minimal-observability-and-safe-guards-show-last-refresh-timestamp-rate-limit-scan-requests-from-the-ui-to-prevent-accidental-rapid-polling-and-provide-clear-error-messages-when-fyers-auth-expires-or-requests-fail",
+      "title": "Add minimal observability and safe-guards: show last refresh timestamp, rate-limit scan requests from the UI to prevent accidental rapid polling, and provide clear error messages when Fyers auth expires or requests fail.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-required-generated-images-as-static-assets-in-the-frontend-and-display-them-in-the-app-shell-e-g-logo-in-header-subtle-background-in-dashboard-container-without-routing-image-delivery-through-the-backend",
+      "title": "Add required generated images as static assets in the frontend and display them in the app shell (e.g., logo in header, subtle background in dashboard container) without routing image delivery through the backend.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-dashboard-index-performance-snapshot-that-shows-change-for-the-following-indices-and-sorts-them-in-descending-order-by-change-nifty50-bank-nifty-nifty-mid-select-sensex-finnifty-nifty-pvt-bank-nifty-psu-bank-nifty-it-nifty-pharma-nifty-fmcg-nifty-auto-nifty-metal-nifty-energy-nifty-realty",
+      "title": "Add a dashboard \"Index Performance\" snapshot that shows % change for the following indices and sorts them in descending order by % change: Nifty50, Bank Nifty, Nifty Mid Select, Sensex, Finnifty, Nifty Pvt Bank, Nifty PSU Bank, Nifty IT, Nifty Pharma, Nifty FMCG, Nifty Auto, Nifty Metal, Nifty Energy, Nifty Realty.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build an Android app dashboard to replicate the existing Python workflow (login + run scan + view criteria results) using symbols.txt as the F&O universe",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Integrate with Fyers broker API to authenticate and fetch required market/option-chain/OI data",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement bull qualification: first 5-min low must be the day low; if that low is broken later, ignore that stock for the day",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement bear qualification: first 5-min high must be the day high; if that high is broken later, ignore that stock for the day",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "For qualifying stocks, compute and display ATM and 2-ITM strike OI change and OI % change from the seller POV on the app dashboard",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Implement backend integration to fetch required intraday price data from Fyers for a list of F&O symbols, including retrieving the first 5-minute candle and day’s evolving high/low needed to evaluate qualification and invalidation rules.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add an Index Performance snapshot section on the dashboard showing % change for: Nifty50, Bank Nifty, Nifty Mid Select, Sensex, Finnifty, Nifty Pvt Bank, Nifty PSU Bank, Nifty IT, Nifty Pharma, Nifty FMCG, Nifty Auto, Nifty Metal, Nifty Energy, Nifty Realty; sorted in descending order by % change.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add Top Gainers and Top Losers sections on the dashboard, calculated using % change from the day open price.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Implement backend support to provide index performance (% change) data for the Dashboard index list, returning a single payload that the frontend can render and sort.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Fyers-based F&O scanner dashboard with bull/bear qualification and OI analytics",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

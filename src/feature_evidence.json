@@ -1,0 +1,27 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-dashboard-index-performance-snapshot-that-shows-change-for-the-following-indices-and-sorts-them-in-descending-order-by-change-nifty50-bank-nifty-nifty-mid-select-sensex-finnifty-nifty-pvt-bank-nifty-psu-bank-nifty-it-nifty-pharma-nifty-fmcg-nifty-auto-nifty-metal-nifty-energy-nifty-realty",
+      "featureTitle": "Add a dashboard \"Index Performance\" snapshot that shows % change for the following indices and sorts them in descending order by % change: Nifty50, Bank Nifty, Nifty Mid Select, Sensex, Finnifty, Nifty Pvt Bank, Nifty PSU Bank, Nifty IT, Nifty Pharma, Nifty FMCG, Nifty Auto, Nifty Metal, Nifty Energy, Nifty Realty.",
+      "files": [
+        "frontend/src/components/dashboard/IndexPerformanceSnapshot.tsx",
+        "frontend/src/hooks/useIndexPerformance.ts",
+        "frontend/src/pages/Dashboard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

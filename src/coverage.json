@@ -1,0 +1,55 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T21:00:13.504Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 1,
+    "items": [
+      {
+        "id": "REQ-11",
+        "summary": "Add a dashboard \"Index Performance\" snapshot that shows % change for the following indices and sorts them in descending order by % change: Nifty50, Bank Nifty, Nifty Mid Select, Sensex, Finnifty, Nifty Pvt Bank, Nifty PSU Bank, Nifty IT, Nifty Pharma, Nifty FMCG, Nifty Auto, Nifty Metal, Nifty Energy, Nifty Realty.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/backend.d.ts",
+          "frontend/src/hooks/useIndexPerformance.ts",
+          "frontend/src/components/dashboard/IndexPerformanceSnapshot.tsx",
+          "frontend/src/pages/Dashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/backend.d.ts",
+          "frontend/src/hooks/useIndexPerformance.ts",
+          "frontend/src/components/dashboard/IndexPerformanceSnapshot.tsx",
+          "frontend/src/pages/Dashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Implement backend support to provide index performance (% change) data for the Dashboard index list, returning a single payload that the frontend can render and sort.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/backend.d.ts",
+    "frontend/src/components/dashboard/IndexPerformanceSnapshot.tsx",
+    "frontend/src/hooks/useIndexPerformance.ts",
+    "frontend/src/pages/Dashboard.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
